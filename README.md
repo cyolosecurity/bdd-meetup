@@ -20,7 +20,7 @@ Welcome to the BDD in Go Integration Meetup! In this session, we'll explore how 
 
 Behavior-Driven Development (BDD) is an agile software development process that encourages collaboration between developers, testers, and non-technical or business participants in a software project.
 
-For more information, you can check the official BDD documentation:
+For more information, you can check this BDD documentation:
 
 - [Cucumber Docs: BDD Overview](https://cucumber.io/docs/bdd/)
 
@@ -100,8 +100,6 @@ In more complex testing environments, orchestration becomes crucial. During the 
 This modular approach allows you to:
 - **Reuse bundles between runs** for faster test execution.
 - Support specific use cases like **zero-downtime upgrades** by grouping infrastructure components.
-
-For more information on this concept, refer to the **Runnable Unit** and **Bundle Interface** sections of the presentation.
 
 ---
 
