@@ -1,7 +1,3 @@
-### README for BDD in Go Integration Meetup
-
----
-
 # Behavior-Driven Development (BDD) in Go
 
 Welcome to the BDD in Go Integration Meetup! In this session, we'll explore how to implement BDD using Go, integrate with tools, and connect with other systems. This README contains resources and links to help you dive deeper into the topics we discussed.
