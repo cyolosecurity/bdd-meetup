@@ -11,7 +11,8 @@ Welcome to the BDD in Go Integration Meetup! In this session, we'll explore how 
 1. [Introduction to BDD](#introduction-to-bdd)
 2. [BDD in Go: Key Concepts](#bdd-in-go-key-concepts)
 3. [Tools for BDD in Go](#tools-for-bdd-in-go)
-4. [Further Reading](#further-reading)
+4. [Orchestration and Infrastructure](#orchestration-and-infrastructure)
+5. [Further Reading](#further-reading)
 
 ---
 
@@ -64,6 +65,43 @@ Several tools can help integrate BDD into your Go projects. Below are the most p
     - [GitHub - Godog](https://github.com/cucumber/godog)
 - **Cucumber Plugin for Go:** An IDE plugin to help write and run BDD tests.
     - [Cucumber Go Plugin for JetBrains](https://plugins.jetbrains.com/plugin/24323-cucumber-go/versions/stable)
+
+---
+
+### Orchestration and Infrastructure
+
+In more complex testing environments, orchestration becomes crucial. During the meetup, we discussed how to dynamically build and run environments using **runnable units** and **bundles**. These abstractions allow you to simulate complex infrastructure setups needed for testing.
+
+#### Runnable Units
+- A **Runnable Unit** represents a piece of infrastructure where tests are executed. This can be a Docker container, a database, or a mock service.
+- Each unit implements an interface with essential methods like `Build`, `Start`, and `Remove`.  
+  Example:
+  ```go
+  type Runnable interface {
+      Build() error
+      Start() error
+      Remove() error
+      ID() string
+      Status() (Status, error)
+  }
+  ```
+
+#### Bundles
+- A **Bundle** is a collection of runnable units. The bundle ensures all units are ready before tests run. For example, starting a Docker container for each unit and checking its status.
+  ```go
+  type Bundle interface {
+      Add(r Runnable) error
+      GetUnits() map[string]Runnable
+      GetUnit(id string) (Runnable, bool)
+      Remove(id string) error
+  }
+  ```
+
+This modular approach allows you to:
+- **Reuse bundles between runs** for faster test execution.
+- Support specific use cases like **zero-downtime upgrades** by grouping infrastructure components.
+
+For more information on this concept, refer to the **Runnable Unit** and **Bundle Interface** sections of the presentation.
 
 ---
 
